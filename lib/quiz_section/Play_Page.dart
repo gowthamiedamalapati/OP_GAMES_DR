@@ -126,66 +126,66 @@ class PlayPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children :[
 
-                        LevelSelectionContainer(levelNum: 0, nextPage: OperatorsMatchingGamePage()),
+                        //LevelSelectionContainer(levelNum: 0, nextPage: OperatorsMatchingGamePage()),
+
+
+                        //LevelSelectionContainer(levelNum: 1,
+                            //nextPage: McqImgQuiz(opSign:'+', level: GlobalVariables.levels[1])),
 
 
                         LevelSelectionContainer(levelNum: 1,
-                            nextPage: McqImgQuiz(opSign:'+', level: GlobalVariables.levels[1])),
+                            nextPage: McqQuiz(opSign: 'mix', level: GlobalVariables.levels[2],)),
 
 
                         LevelSelectionContainer(levelNum: 2,
-                            nextPage: McqQuiz(opSign: '+', level: GlobalVariables.levels[2],)),
+                            nextPage: TextQuiz(opSign:'mix', level: GlobalVariables.levels[3])),
 
 
                         LevelSelectionContainer(levelNum: 3,
-                            nextPage: TextQuiz(opSign:'+', level: GlobalVariables.levels[3])),
+                            nextPage: McqImgQuiz(opSign:'mix', level: GlobalVariables.levels[4])),
 
 
                         LevelSelectionContainer(levelNum: 4,
-                            nextPage: McqImgQuiz(opSign:'-', level: GlobalVariables.levels[4])),
+                           nextPage: McqQuiz(opSign: 'mix', level: GlobalVariables.levels[5],)),
 
 
                         LevelSelectionContainer(levelNum: 5,
-                           nextPage: McqQuiz(opSign: '-', level: GlobalVariables.levels[5],)),
-
-
-                        LevelSelectionContainer(levelNum: 6,
-                            nextPage: TextQuiz(opSign:'-', level: GlobalVariables.levels[6])),
+                            nextPage: TextQuiz(opSign:'mix', level: GlobalVariables.levels[6])),
 
 
 
                       ]
                   ),
-                  Spacer(flex: 1),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children :[
+                  // Spacer(flex: 1),
+                  // Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //     children :[
 
 
-                        LevelSelectionContainer(levelNum: 7,
-                            nextPage: McqQuiz(opSign: 'x', level: GlobalVariables.levels[7],)),
+                  //       LevelSelectionContainer(levelNum: 7,
+                  //           nextPage: McqQuiz(opSign: 'x', level: GlobalVariables.levels[7],)),
 
 
-                        LevelSelectionContainer(levelNum: 8, nextPage: TextQuiz(opSign: 'x', level: GlobalVariables.levels[8])),
+                  //       LevelSelectionContainer(levelNum: 8, nextPage: TextQuiz(opSign: 'x', level: GlobalVariables.levels[8])),
 
 
-                        LevelSelectionContainer(levelNum: 9, nextPage: McqQuiz(opSign: '÷', level: GlobalVariables.levels[9],)),
+                  //       LevelSelectionContainer(levelNum: 9, nextPage: McqQuiz(opSign: '÷', level: GlobalVariables.levels[9],)),
 
 
-                        LevelSelectionContainer(levelNum: 10, nextPage: TextQuiz(opSign: '÷', level: GlobalVariables.levels[10])),
+                  //       LevelSelectionContainer(levelNum: 10, nextPage: TextQuiz(opSign: '÷', level: GlobalVariables.levels[10])),
 
 
-                        LevelSelectionContainer(levelNum: 11, nextPage: McqQuiz(opSign: 'mix', level: GlobalVariables.levels[11],)),
+                  //       LevelSelectionContainer(levelNum: 11, nextPage: McqQuiz(opSign: 'mix', level: GlobalVariables.levels[11],)),
 
 
-                        LevelSelectionContainer(levelNum: 12, nextPage: TextQuiz(opSign: 'mix', level: GlobalVariables.levels[12])),
+                  //       LevelSelectionContainer(levelNum: 12, nextPage: TextQuiz(opSign: 'mix', level: GlobalVariables.levels[12])),
 
 
-                        LevelSelectionContainer(levelNum: 13, nextPage: TextQuiz(opSign: 'mix', level: GlobalVariables.levels[13])),
+                  //       LevelSelectionContainer(levelNum: 13, nextPage: TextQuiz(opSign: 'mix', level: GlobalVariables.levels[13])),
 
 
-                      ]
-                  ),
+                  //     ]
+                  // ),
                   Spacer(flex: 2),
                 ],
               )

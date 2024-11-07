@@ -8,6 +8,12 @@ class LearnComplete extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double cardWidth = screenWidth * 0.75;  // 75% of screen width
+    double cardHeight = MediaQuery.of(context).size.height * 0.6; // 60% of screen height
+    double padding = screenWidth * 0.01; // 1% of screen width for padding
+    double buttonWidth = screenWidth * 0.20; // 15% of screen width for buttons
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -16,7 +22,6 @@ class LearnComplete extends StatelessWidget {
         foregroundColor: Colors.black,
         backgroundColor: Colors.lightBlue,
         shape: CircleBorder(),
-
         child: const Icon(Icons.arrow_back_ios),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
@@ -41,11 +46,11 @@ class LearnComplete extends StatelessWidget {
               children: <Widget>[
                 Icon(
                   Icons.emoji_events,
-                  size: 150,
+                  size: screenHeight * 0.1,
                 ),
                 SizedBox(height: 20),
                 Text('Congratulations !!! You have completed this lesson.',
-                  style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 40),
+                  style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: (screenWidth * 0.025).clamp(25.0, 40.0)),
                 ),
                 SizedBox(height: 50),
                 InkWell(
@@ -55,17 +60,17 @@ class LearnComplete extends StatelessWidget {
                   },
                   borderRadius: BorderRadius.circular(30),
                   child: Container(
-                    width: 200,
+                    width: buttonWidth,
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       color: Colors.lightBlue,
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Text('Done',
-                          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 40),
+                          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: (screenWidth * 0.025).clamp(25.0, 40.0)),
                         ),
                       ],
                     ),

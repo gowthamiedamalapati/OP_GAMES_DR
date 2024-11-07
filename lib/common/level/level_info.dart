@@ -86,7 +86,7 @@ class LevelInfo{
 List<LevelInfo> initLevelData() {
   List<LevelInfo> levels = [];
   List<String> signs = [ "TEMP",
-    '+','+','+', // For levels 1, 2, 3,
+    'mix','mix','mix', // For levels 1, 2, 3,
     '-', '-', '-', // For levels 4, 5, 6
     'x','x', // For levels 7, 8,
     '÷','÷', // For levels 9, 10

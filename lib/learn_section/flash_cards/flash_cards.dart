@@ -51,6 +51,11 @@ class _FlashCardState extends State<FlashCard> {
   }
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double cardWidth = screenWidth * 0.75;  // 75% of screen width
+    double cardHeight = MediaQuery.of(context).size.height * 0.6; // 60% of screen height
+    double padding = screenWidth * 0.01; // 1% of screen width for padding
+    double buttonWidth = screenWidth * 0.15; // 15% of screen width for buttons
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -64,65 +69,62 @@ class _FlashCardState extends State<FlashCard> {
             children: [
               Container(
                 padding: const EdgeInsets.fromLTRB(20, 50, 20, 50),
-                width: 1800,
+                width: cardWidth,
                 height: 600,
                 child: _renderFlashCard(flashCards[currentCardIndex]),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(width: 150),
+                  //SizedBox(width: 150),
                   InkWell(
                     onTap: () {
                       _navigateToCard(-1);
                     },
                     borderRadius: BorderRadius.circular(30),
                     child: Container(
-                      width: 200,
-                      padding: const EdgeInsets.all(10),
+                      width: buttonWidth,
+                      padding:  EdgeInsets.all(padding),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
                         color: Colors.lightBlue,
                       ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
+                      child:  Center(
+                        //mainAxisAlignment: MainAxisAlignment.center,
+                        child:Text(
                             "Back",
                             style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
-                              fontSize: 30,
+                              fontSize: (screenWidth * 0.025).clamp(16.0, 24.0),
                             ),
                           ),
-                        ],
                       ),
                     ),
                   ),
-                  SizedBox(width: 600),
+                  //SizedBox(width: 600),
                   InkWell(
                     onTap: () {
                       _navigateToCard(1);
                     },
                     borderRadius: BorderRadius.circular(30),
                     child: Container(
-                      width: 200,
-                      padding: const EdgeInsets.all(10),
+                      width: buttonWidth,
+                      padding: EdgeInsets.all(padding),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
                         color: Colors.lightBlue,
                       ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
+                      child:  Center(
+                        //mainAxisAlignment: MainAxisAlignment.center,
+                        child:Text(
                             "Next",
                             style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
-                              fontSize: 30,
+                              fontSize: (screenWidth * 0.025).clamp(16.0, 24.0),
                             ),
                           ),
-                        ],
                       ),
                     ),
                   ),
@@ -136,6 +138,11 @@ class _FlashCardState extends State<FlashCard> {
   }
 
   Widget _renderFlashCard(data ) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double cardWidth = screenWidth * 0.75;  // 75% of screen width
+    double cardHeight = MediaQuery.of(context).size.height * 0.6; // 60% of screen height
+    double padding = screenWidth * 0.01; // 1% of screen width for padding
+    double buttonWidth = screenWidth * 0.15; // 15% of screen width for buttons
     String rem = 'and remainder = ';
     if (data["op_sign"] == '÷'){
       rem +=  '${data['fst_num'] % data['snd_num']}.';
@@ -167,7 +174,7 @@ class _FlashCardState extends State<FlashCard> {
           print(status);
         },
         front: Container(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: Colors.white60,
             borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -180,7 +187,7 @@ class _FlashCardState extends State<FlashCard> {
                 style: TextStyle(
                   color: Colors.green,
                   fontWeight: FontWeight.bold,
-                  fontSize: 100,
+                  fontSize: screenWidth * 0.1,
                   height: 0.8,
                 ),
               ),
@@ -189,7 +196,7 @@ class _FlashCardState extends State<FlashCard> {
                 style: TextStyle(
                   color: Colors.black87,
                   fontWeight: FontWeight.bold,
-                  fontSize: 50,
+                  fontSize: screenWidth * 0.05,
                 ),
               ),
               Text(
@@ -197,13 +204,14 @@ class _FlashCardState extends State<FlashCard> {
                 style: TextStyle(
                   color: Colors.black45,
                   fontWeight: FontWeight.bold,
-                  fontSize: 30,
+                  fontSize: (screenWidth * 0.04).clamp(10.0, 30.0),
                 ),
               ),
               SizedBox(height: 80),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(width: 350),
+                  //SizedBox(width: 350),
                   InkWell(
                     onTap: () {
                       changeLang();
@@ -211,44 +219,42 @@ class _FlashCardState extends State<FlashCard> {
                     },
                     borderRadius: BorderRadius.circular(30),
                     child: Container(
-                      width: 100,
-                      padding: const EdgeInsets.all(10),
+                      width: (screenWidth / 8).clamp(50.0, 100.0),
+                      padding: EdgeInsets.all(padding),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
                         color: Colors.lightGreen,
                       ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
+                      child: Center(
+                        //mainAxisAlignment: MainAxisAlignment.center,
+                        child:
                           Icon(
                             Icons.translate,
-                            size: 50,
+                            size: (screenWidth * 0.025).clamp(25.0, 50.0),
                           ),
-                        ],
                       ),
                     ),
                   ),
-                  SizedBox(width: 200),
+                  //SizedBox(width: 200),
                   InkWell(
                     onTap: () {
                       ReadOut(data['op_def'][currentLanguage] + "; " + data['op_name'][currentLanguage]);
                     },
                     borderRadius: BorderRadius.circular(30),
                     child: Container(
-                      width: 100,
-                      padding: const EdgeInsets.all(10),
+                      width: (screenWidth / 8).clamp(50.0, 100.0),
+                      padding: EdgeInsets.all(padding),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
                         color: Colors.lightGreen,
                       ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
+                      child:  Center(
+                        //mainAxisAlignment: MainAxisAlignment.center,
+                        child: 
                           Icon(
                             Icons.volume_up,
-                            size: 50,
+                            size: (screenWidth * 0.025).clamp(25.0, 50.0),
                           ),
-                        ],
                       ),
                     ),
                   ),
@@ -258,7 +264,7 @@ class _FlashCardState extends State<FlashCard> {
           ),
         ),
         back: Container(
-          padding: EdgeInsets.all(50),
+          //padding: EdgeInsets.all(50),
           decoration: BoxDecoration(
             color: Colors.white70,
             borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -266,55 +272,56 @@ class _FlashCardState extends State<FlashCard> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              FlashCardInfo(data["op_sign"], data['fst_num'], data['snd_num']),
+              FlashCardInfo(data["op_sign"], data['fst_num'], data['snd_num'],fontSize: MediaQuery.of(context).size.width * 0.05,),
               SizedBox(height: 20),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(width: 350),
+                  //SizedBox(width: 350),
                   InkWell(
                     onTap: () {
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) => LearnPage()));
+                      changeLang();// Navigator.push(context, MaterialPageRoute(builder: (context) => LearnPage()));
                     },
                     borderRadius: BorderRadius.circular(30),
                     child: Container(
-                      width: 100,
-                      padding: const EdgeInsets.all(10),
+                      width: (screenWidth / 8).clamp(50.0, 100.0),
+                      padding:  EdgeInsets.all(padding),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
                         color: Colors.lightGreen,
                       ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
+                      child:  Center(
+                        //mainAxisAlignment: MainAxisAlignment.center,
+                        child:
                           Icon(
                             Icons.translate,
-                            size: 50,
+                            size: (screenWidth * 0.025).clamp(25.0, 50.0),
                           ),
-                        ],
+                        
                       ),
                     ),
                   ),
-                  SizedBox(width: 200),
+                  //SizedBox(width: 200),
                   InkWell(
                     onTap: () {
                       ReadOut('${data["fst_num"]} ${sign_pron} ${data["snd_num"]}  = ${get_op_result(data["op_sign"], data["fst_num"], data["snd_num"])} ${data["op_sign"] == "÷" ? rem : "."}');
                     },
                     borderRadius: BorderRadius.circular(30),
                     child: Container(
-                      width: 100,
-                      padding: const EdgeInsets.all(10),
+                      width: (screenWidth / 8).clamp(50.0, 100.0),
+                      padding:  EdgeInsets.all(padding),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
                         color: Colors.lightGreen,
                       ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
+                      child: Center(
+                        //mainAxisAlignment: MainAxisAlignment.center,
+                        child: 
                           Icon(
                             Icons.volume_up,
-                            size: 50,
+                            size: (screenWidth * 0.025).clamp(25.0, 50.0),
                           ),
-                        ],
+                        
                       ),
                     ),
                   ),

@@ -237,7 +237,7 @@ class _McqQuizState extends State<McqQuiz> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text( 'Next' ,
-                              style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 30),
+                              style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: (screenWidth / 30).clamp(16.0, 30.0)),
                             ),
                           ],
                         ),

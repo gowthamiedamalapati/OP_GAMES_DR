@@ -20,7 +20,7 @@ class PracticeScreen extends StatefulWidget {
 class _PracticeScreenState extends State<PracticeScreen> {
   int? selectedAnswerIndex;
   int questionIndex = 0;
-  late double screenWidth = MediaQuery.of(context).size.width;
+  //late double screenWidth = MediaQuery.of(context).size.width;
   late List<McqQuestion> questions;
   FlutterTts flutterTts = FlutterTts();
   int currentLanguage= 0;
@@ -69,6 +69,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     final question = questions[questionIndex];
     bool isLastQuestion = questionIndex == questions.length-1;
     return Scaffold(
@@ -92,35 +93,36 @@ class _PracticeScreenState extends State<PracticeScreen> {
         ),
         child:
       Padding(
-        padding: const EdgeInsets.fromLTRB(50,100, 50,50),
+        padding: EdgeInsets.fromLTRB(screenWidth/10,screenWidth/20, screenWidth/10,screenWidth/40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
           children: [
             Container(
-              height: 100,
-              width: 1500,
+              height: (screenWidth / 8).clamp(120.0, 120.0),
+              width: screenWidth,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: Colors.white54,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     quesHeading[currentLanguage],
-                    style: const TextStyle(
+                    style:  TextStyle(
                       // backgroundColor: Colors.grey,
-                      fontSize: 20,
+                      fontSize:  (screenWidth / 25).clamp(16.0, 28.0),
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
                   ),
                   Text(
                     question.question[currentLanguage],
-                    style: const TextStyle(
+                    style:  TextStyle(
                       // backgroundColor: Colors.grey,
-                      fontSize: 40,
+                      fontSize:  (screenWidth / 25).clamp(16.0, 28.0),
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
@@ -150,6 +152,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
             // Next button
             SizedBox(height: 10,),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 InkWell(
                   onTap: () {
@@ -157,24 +160,25 @@ class _PracticeScreenState extends State<PracticeScreen> {
                   },
                   borderRadius: BorderRadius.circular(30),
                   child: Container(
-                    width: 100,
+                    width: screenWidth/10,
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       color: Colors.lightGreen,
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Icon(
                           Icons.volume_up,
-                          size: 50,
+                          size: screenWidth/40,
                         ),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(width: 170,),
+                //SizedBox(width: 170,),
+                Spacer(flex: 1),
                 InkWell(
                   onTap: () {
                     if (questionIndex == questions.length-1 && selectedAnswerIndex != null) {
@@ -186,7 +190,7 @@ class _PracticeScreenState extends State<PracticeScreen> {
                   },
                   borderRadius: BorderRadius.circular(30),
                   child: Container(
-                    width: screenWidth - screenWidth/2,
+                    width: screenWidth/4,
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
@@ -194,33 +198,34 @@ class _PracticeScreenState extends State<PracticeScreen> {
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const [
+                      children: [
                         Text( 'Next' ,
-                          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 30),
+                          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: (screenWidth / 30).clamp(16.0, 30.0)),
                         ),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(width: 170,),
+                //SizedBox(width: 170,),
+                Spacer(flex: 1),
                 InkWell(
                   onTap: () {
                     changeLang();
                   },
                   borderRadius: BorderRadius.circular(30),
                   child: Container(
-                    width: 100,
+                    width: screenWidth/10,
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       color: Colors.lightGreen,
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Icon(
                           Icons.translate,
-                          size: 50,
+                          size: screenWidth/40,
                         ),
                       ],
                     ),
