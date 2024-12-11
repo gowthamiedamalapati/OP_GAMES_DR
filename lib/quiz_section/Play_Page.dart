@@ -134,23 +134,23 @@ class PlayPage extends StatelessWidget {
 
 
                         LevelSelectionContainer(levelNum: 1,
-                            nextPage: McqQuiz(opSign: 'mix', level: GlobalVariables.levels[2],)),
+                            nextPage: McqQuiz(opSign: 'mix', level: GlobalVariables.levels[1],)),
 
 
                         LevelSelectionContainer(levelNum: 2,
-                            nextPage: TextQuiz(opSign:'mix', level: GlobalVariables.levels[3])),
+                            nextPage: TextQuiz(opSign:'mix', level: GlobalVariables.levels[2])),
 
 
                         LevelSelectionContainer(levelNum: 3,
-                            nextPage: McqImgQuiz(opSign:'mix', level: GlobalVariables.levels[4])),
+                            nextPage: McqQuiz(opSign:'mix', level: GlobalVariables.levels[3])),
 
 
                         LevelSelectionContainer(levelNum: 4,
-                           nextPage: McqQuiz(opSign: 'mix', level: GlobalVariables.levels[5],)),
+                           nextPage: McqQuiz(opSign: 'mix', level: GlobalVariables.levels[4],)),
 
 
                         LevelSelectionContainer(levelNum: 5,
-                            nextPage: TextQuiz(opSign:'mix', level: GlobalVariables.levels[6])),
+                            nextPage: TextQuiz(opSign:'mix', level: GlobalVariables.levels[5])),
 
 
 
