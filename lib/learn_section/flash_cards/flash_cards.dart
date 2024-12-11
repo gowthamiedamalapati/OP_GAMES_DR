@@ -278,29 +278,29 @@ class _FlashCardState extends State<FlashCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   //SizedBox(width: 350),
-                  InkWell(
-                    onTap: () {
-                      changeLang();// Navigator.push(context, MaterialPageRoute(builder: (context) => LearnPage()));
-                    },
-                    borderRadius: BorderRadius.circular(30),
-                    child: Container(
-                      width: (screenWidth / 8).clamp(50.0, 100.0),
-                      padding:  EdgeInsets.all(padding),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Colors.lightGreen,
-                      ),
-                      child:  Center(
-                        //mainAxisAlignment: MainAxisAlignment.center,
-                        child:
-                          Icon(
-                            Icons.translate,
-                            size: (screenWidth * 0.025).clamp(25.0, 50.0),
-                          ),
+                  // InkWell(
+                  //   onTap: () {
+                  //     changeLang();// Navigator.push(context, MaterialPageRoute(builder: (context) => LearnPage()));
+                  //   },
+                  //   borderRadius: BorderRadius.circular(30),
+                  //   child: Container(
+                  //     width: (screenWidth / 8).clamp(50.0, 100.0),
+                  //     padding:  EdgeInsets.all(padding),
+                  //     decoration: BoxDecoration(
+                  //       borderRadius: BorderRadius.circular(30),
+                  //       color: Colors.lightGreen,
+                  //     ),
+                  //     child:  Center(
+                  //       //mainAxisAlignment: MainAxisAlignment.center,
+                  //       child:
+                  //         Icon(
+                  //           Icons.translate,
+                  //           size: (screenWidth * 0.025).clamp(25.0, 50.0),
+                  //         ),
                         
-                      ),
-                    ),
-                  ),
+                  //     ),
+                  //   ),
+                  // ),
                   //SizedBox(width: 200),
                   InkWell(
                     onTap: () {
