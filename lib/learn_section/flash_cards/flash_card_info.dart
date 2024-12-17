@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:op_games/common/picture_form.dart';
-import 'package:number_to_words_english/number_to_words_english.dart';
 import 'package:op_games/common/comm_functions.dart';
+import 'package:op_games/common/languageconverter.dart';
 import 'dart:math' as math;
+import 'package:op_games/common/translate/translate.dart';
 
 class FlashCardInfo extends StatelessWidget {
   final int _f;
@@ -10,8 +10,8 @@ class FlashCardInfo extends StatelessWidget {
   final String _sign;
   final double _size = 30;
   final double fontSize;
-  
-  const FlashCardInfo(this._sign, this._f, this._s, {Key? key, required this.fontSize}) : super(key: key);
+  final int currentLanguage;  
+  const FlashCardInfo(this._sign, this._f, this._s, this.currentLanguage, {super.key, required this.fontSize});
   
   double get safeFontSize => math.min(fontSize, 20.0);
   
@@ -27,11 +27,11 @@ class FlashCardInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              _f.toString() + "  ",
+              "$_f  ",
               style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: safeFontSize),
             ),
             Text(
-              _sign + "  ",
+              "$_sign  ",
               style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: safeFontSize),
             ),
             Text(
@@ -50,47 +50,62 @@ class FlashCardInfo extends StatelessWidget {
         ),
         if (_sign == '÷')
           Text(
-            "remainder = " + rem.toString(),
+            currentLanguage == 0 ? "remainder = $rem" : "resto = $rem",
             style: TextStyle(
               color: Colors.black87,
               fontWeight: FontWeight.bold,
               fontSize: safeFontSize,
             ),
           ),
+        // Conditional Rendering Based on Language
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              NumberToWordsEnglish.convert(_f) + "  ",
-              style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: safeFontSize),
-            ),
-            Text(
-              _sign + "  ",
-              style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: safeFontSize),
-            ),
-            Text(
-              NumberToWordsEnglish.convert(_s),
-              style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: safeFontSize),
-            ),
-            Text(
-              '  =  ',
-              style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: safeFontSize),
-            ),
-            Text(
-              NumberToWordsEnglish.convert(res),
-              style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: safeFontSize),
-            ),
+            if (currentLanguage == 0) ...[  // English
+              Text(
+                "${NumberToWordsEnglish.convert(_f)}  ",
+                style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: safeFontSize),
+              ),
+              Text(
+                "$_sign  ",
+                style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: safeFontSize),
+              ),
+              Text(
+                NumberToWordsEnglish.convert(_s),
+                style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: safeFontSize),
+              ),
+              Text(
+                '  =  ',
+                style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: safeFontSize),
+              ),
+              Text(
+                NumberToWordsEnglish.convert(res),
+                style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: safeFontSize),
+              ),
+            ] else if (currentLanguage == 1) ...[  // Spanish
+              Text(
+                "${NumberToWordsSpanish.convert(_f)}  ",
+                style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: safeFontSize),
+              ),
+              Text(
+                "$_sign  ",
+                style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: safeFontSize),
+              ),
+              Text(
+                NumberToWordsSpanish.convert(_s),
+                style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: safeFontSize),
+              ),
+              Text(
+                '  =  ',
+                style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: safeFontSize),
+              ),
+              Text(
+                NumberToWordsSpanish.convert(res),
+                style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold, fontSize: safeFontSize),
+              ),
+            ],
           ],
         ),
-        if (_sign == '÷')
-          Text(
-            "remainder = " + rem.toString(),
-            style: TextStyle(
-              color: Colors.black87,
-              fontWeight: FontWeight.bold,
-              fontSize: safeFontSize,
-            ),
-          ),
       ],
     );
   }
