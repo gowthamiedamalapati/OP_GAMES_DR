@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flip_card/flip_card.dart';
-import 'package:number_to_words_english/number_to_words_english.dart';
+import 'package:op_games/common/languageconverter.dart';
 import 'package:op_games/learn_section/learn_complete.dart';
-import 'package:op_games/learn_section/operator.dart';
 import 'flash_card_info.dart';
-import 'package:op_games/common/random_num_gen.dart';
 import 'package:op_games/common/operator_data/op_data.dart';
 import 'package:op_games/common/comm_functions.dart';
 import 'dart:developer';
@@ -14,7 +12,7 @@ import 'package:op_games/common/translate/translate.dart';
 
 class FlashCard extends StatefulWidget {
   final String opSign;
-  FlashCard({Key? key,required this.opSign}) : super(key: key);
+  const FlashCard({super.key,required this.opSign});
 
   @override
   _FlashCardState createState() => _FlashCardState();
@@ -49,6 +47,7 @@ class _FlashCardState extends State<FlashCard> {
       currentLanguage = currentLanguage == 0 ? 1 : 0;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -147,25 +146,26 @@ class _FlashCardState extends State<FlashCard> {
     if (data["op_sign"] == '÷'){
       rem +=  '${data['fst_num'] % data['snd_num']}.';
     }
-    String sign_pron = '';
+    String signPron = '';
     if (data["op_sign"] == '-'){
-      sign_pron = 'minus';
+      signPron = 'minus';
     }
     else if (data["op_sign"] == 'x'){
-      sign_pron = 'multiplied by ';
+      signPron = 'multiplied by ';
     }
     else {
-      sign_pron = data["op_sign"];
+      signPron = data["op_sign"];
     }
+
     return Card(
       elevation: 0.0,
-      margin: EdgeInsets.only(
+      margin: const EdgeInsets.only(
         left: 32.0,
         right: 32.0,
         top: 20.0,
         bottom: 0.0,
       ),
-      color: Color(0x00000000),
+      color: const Color(0x00000000),
       child: FlipCard(
         direction: FlipDirection.HORIZONTAL,
         side: CardSide.FRONT,
@@ -174,8 +174,8 @@ class _FlashCardState extends State<FlashCard> {
           print(status);
         },
         front: Container(
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.all(10),
+          decoration: const BoxDecoration(
             color: Colors.white60,
             borderRadius: BorderRadius.all(Radius.circular(8.0)),
           ),
@@ -207,7 +207,7 @@ class _FlashCardState extends State<FlashCard> {
                   fontSize: (screenWidth * 0.04).clamp(10.0, 30.0),
                 ),
               ),
-              SizedBox(height: 80),
+              const SizedBox(height: 80),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -265,46 +265,46 @@ class _FlashCardState extends State<FlashCard> {
         ),
         back: Container(
           //padding: EdgeInsets.all(50),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white70,
             borderRadius: BorderRadius.all(Radius.circular(8.0)),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              FlashCardInfo(data["op_sign"], data['fst_num'], data['snd_num'],fontSize: MediaQuery.of(context).size.width * 0.05,),
-              SizedBox(height: 20),
+              FlashCardInfo(data["op_sign"], data['fst_num'], data['snd_num'],currentLanguage,fontSize: MediaQuery.of(context).size.width * 0.15,),
+              const SizedBox(height: 20),              
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   //SizedBox(width: 350),
-                  // InkWell(
-                  //   onTap: () {
-                  //     changeLang();// Navigator.push(context, MaterialPageRoute(builder: (context) => LearnPage()));
-                  //   },
-                  //   borderRadius: BorderRadius.circular(30),
-                  //   child: Container(
-                  //     width: (screenWidth / 8).clamp(50.0, 100.0),
-                  //     padding:  EdgeInsets.all(padding),
-                  //     decoration: BoxDecoration(
-                  //       borderRadius: BorderRadius.circular(30),
-                  //       color: Colors.lightGreen,
-                  //     ),
-                  //     child:  Center(
-                  //       //mainAxisAlignment: MainAxisAlignment.center,
-                  //       child:
-                  //         Icon(
-                  //           Icons.translate,
-                  //           size: (screenWidth * 0.025).clamp(25.0, 50.0),
-                  //         ),
+                  InkWell(
+                    onTap: () {
+                      changeLang();// Navigator.push(context, MaterialPageRoute(builder: (context) => LearnPage()));
+                    },
+                    borderRadius: BorderRadius.circular(30),
+                    child: Container(
+                      width: (screenWidth / 8).clamp(50.0, 100.0),
+                      padding:  EdgeInsets.all(padding),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.lightGreen,
+                      ),
+                      child:  Center(
+                        //mainAxisAlignment: MainAxisAlignment.center,
+                        child:
+                          Icon(
+                            Icons.translate,
+                            size: (screenWidth * 0.025).clamp(25.0, 50.0),
+                          ),
                         
-                  //     ),
-                  //   ),
-                  // ),
+                      ),
+                    ),
+                  ),
                   //SizedBox(width: 200),
                   InkWell(
                     onTap: () {
-                      ReadOut('${data["fst_num"]} ${sign_pron} ${data["snd_num"]}  = ${get_op_result(data["op_sign"], data["fst_num"], data["snd_num"])} ${data["op_sign"] == "÷" ? rem : "."}');
+                      ReadOut('${data["fst_num"]} $signPron ${data["snd_num"]}  = ${get_op_result(data["op_sign"], data["fst_num"], data["snd_num"])} ${data["op_sign"] == "÷" ? rem : "."}');
                     },
                     borderRadius: BorderRadius.circular(30),
                     child: Container(
@@ -345,7 +345,7 @@ class _FlashCardState extends State<FlashCard> {
       Navigator.pop(context);
     }
     else {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => LearnComplete()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const LearnComplete()));
     }
   }
 }
